@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Friends</title>
+    </head>
+    <body>
+
+        <a href="{% url 'login:logout' %}">Log out</a>
+
+        <h1>Welcome {{request.session.first_name}}</h1>
+        <br>
+        <br>
+        <br>
+        <a href="{% url 'friend:show' %}">View my friends</a>
+        <br>
+        <br>
+        <a href="{% url 'friend:add' %}">Add a friend</a>
+        <br>
+        <br>
+        <h3>Recent 3 users:</h3>
+        <table>
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Time</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{user.first_name}}</td>
+                    <td>{{user.created_at|timesince}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>

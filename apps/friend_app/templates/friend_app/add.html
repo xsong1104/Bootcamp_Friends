@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Add friend</title>
+    </head>
+    <body>
+        <a href="{% url 'login:logout' %}">Log out</a>
+        <br>
+        <br>
+        <a href="{% url 'friend:index' %}">Go Back</a>
+        <br>
+        <h1>Pick one as your friend</h1>
+        <form action ="{% url 'friend:addfriend' %}" method="POST" >
+            {% csrf_token %}
+                {% for user in users %}
+                    {{user.first_name}}    <input type="hidden" name="addf" value={{user.first_name}}><input type="submit" name="add" value="Add as my friend">
+                    <br>
+                {% endfor %}
+        </form>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+    </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Register and Login</title>
+    </head>
+    <body>
+        <h2>Register</h2>
+        <form action="{% url 'login:register' %}" method="POST">
+            {% csrf_token %}
+            <label>First Name: </label><input type="text" name="first_name" size = 100 placeholder="Entry your first name. Letters only">
+            <br>
+            <label>Last Name: </label><input type="text" name="last_name" size = 100 placeholder="Entry your last name. Letters only" >
+            <br>
+            <label>Email: </label><input type="text" name="email" size = 100 placeholder="Entry your email address. Make sure valid format">
+            <br>
+            <label>Password: </label><input type="password" name="password" size = 100 placeholder="Entry your password. No fewer than 8 characters in length">
+            <br>
+            <label>Confirm Password: </label><input type="password" name="confirm" size = 100 placeholder="Entry your password. No fewer than 8 characters in length">
+            <br>
+            <input type="submit" name="submit" value="Register"><br>
+        </form>
+
+        <h2>Login</h2>
+        <form action="{% url 'login:login' %}" method="POST">
+            {% csrf_token %}
+            <label>Email: </label><input type="text" name="email" size = 100 placeholder="Entry your email address">
+            <br>
+            <label>Password: </label><input type="password" name="password" size = 100 placeholder="Entry your password">
+            <br>
+            <input type="submit" name="submit" value="Login"><br>
+        </form>
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </body>
+</html>
